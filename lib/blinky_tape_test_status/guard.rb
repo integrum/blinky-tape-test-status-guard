@@ -3,7 +3,7 @@ require 'blinky_tape_test_status'
 
 module BlinkyTapeTestStatus
   class Guard < BlinkyTapeTestStatus::Base
-    VERSION = '0.0.1'
+    VERSION = '0.0.2'
     
     COLORS = {
       'success' => 'g',
@@ -13,6 +13,7 @@ module BlinkyTapeTestStatus
 
     def initialize(options={})
       @filename = options[:filename]
+      super options
     end
 
     def set_status!

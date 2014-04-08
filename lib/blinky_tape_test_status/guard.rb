@@ -3,8 +3,8 @@ require 'blinky_tape_test_status'
 
 module BlinkyTapeTestStatus
   class Guard < BlinkyTapeTestStatus::Base
-    VERSION = '1.0.0'
-    
+    VERSION = '1.1.0'
+
     COLORS = {
       'success' => 'g',
       'failed'  => 'r',

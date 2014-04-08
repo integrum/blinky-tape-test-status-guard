@@ -1,9 +1,8 @@
-#!/usr/bin/env ruby
 require 'blinky_tape_test_status'
 
 module BlinkyTapeTestStatus
   class Guard < BlinkyTapeTestStatus::Base
-    VERSION = '1.1.0'
+    VERSION = '1.1.1'
 
     COLORS = {
       'success' => 'g',
@@ -12,8 +11,13 @@ module BlinkyTapeTestStatus
     }
 
     def initialize(options={})
-      @filename = options[:filename]
       super options
+      @filename = options[:filename]
+      if options.delete(:cloud)
+        require 'blinky_tape_test_status/guard_cloud'
+        extend GuardCloud
+        listen_for_cloud!
+      end
     end
 
     def set_status!
@@ -27,7 +31,7 @@ module BlinkyTapeTestStatus
     end
 
     def line
-      File.open(@filename, &:readline).strip
+      File.open(@filename, &:readline).strip if @filename && File.exist?(@filename)
     end
   end
 end

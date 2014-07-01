@@ -2,7 +2,7 @@ require 'blinky_tape_test_status'
 
 module BlinkyTapeTestStatus
   class Guard < BlinkyTapeTestStatus::Base
-    VERSION = '1.1.1'
+    VERSION = '1.1.2'
 
     COLORS = {
       'success' => 'g',
@@ -18,6 +18,8 @@ module BlinkyTapeTestStatus
         extend GuardCloud
         listen_for_cloud!
       end
+    rescue Exception => e
+      puts e.message
     end
 
     def set_status!
